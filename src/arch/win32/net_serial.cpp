@@ -60,15 +60,15 @@ bool raw_serial::open()
     return open(_portName, _baudrate, _flags);
 }
 
-bool raw_serial::bind(const wchar_t * portname, _u32 baudrate, _u32 flags)
+bool raw_serial::bind(const char * portname, _u32 baudrate, _u32 flags)
 {   
-	wcsncpy(_portName, portname, sizeof(_portName));
+    strncpy(_portName, portname, sizeof(_portName));
     _baudrate = baudrate;
     _flags    = flags;
     return true;
 }
 
-bool raw_serial::open(const wchar_t * portname, _u32 baudrate, _u32 flags)
+bool raw_serial::open(const char * portname, _u32 baudrate, _u32 flags)
 {
     if (isOpened()) close();
     
@@ -313,6 +313,7 @@ void raw_serial::clearDTR()
 
     EscapeCommFunction(_serial_handle, CLRDTR);
 }
+
 
 void raw_serial::_init()
 {

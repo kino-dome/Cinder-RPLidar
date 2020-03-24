@@ -44,7 +44,7 @@ public:
 
     SerialChannelDevice():_rxtxSerial(rp::hal::serial_rxtx::CreateRxTx()){}
 
-    bool bind(const wchar_t * portname, uint32_t baudrate)
+    bool bind(const char * portname, uint32_t baudrate)
     {
         _closePending = false;
         return _rxtxSerial->bind(portname, baudrate);
@@ -98,7 +98,7 @@ public:
 
     RPlidarDriverSerial();
     virtual ~RPlidarDriverSerial();
-    virtual u_result connect(const wchar_t  * port_path,  _u32 baudrate, _u32 flag = 0);
+    virtual u_result connect(const char * port_path,  _u32 baudrate, _u32 flag = 0);
     virtual void disconnect();
 
 };

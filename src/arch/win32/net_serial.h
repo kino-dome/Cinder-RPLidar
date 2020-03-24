@@ -38,7 +38,7 @@
 
 namespace rp{ namespace arch{ namespace net{
 
-class raw_serial : public virtual rp::hal::serial_rxtx
+class raw_serial : public rp::hal::serial_rxtx
 {
 public:
     enum{
@@ -50,7 +50,7 @@ public:
 
     raw_serial();
     virtual ~raw_serial();
-    virtual bool bind(const wchar_t * portname, _u32 baudrate, _u32 flags = 0);
+    virtual bool bind(const char * portname, _u32 baudrate, _u32 flags = 0);
     virtual bool open();
     virtual void close();
     virtual void flush( _u32 flags);
@@ -69,10 +69,10 @@ public:
     virtual void clearDTR();
 
 protected:
-    bool open(const wchar_t * portname, _u32 baudrate, _u32 flags);
+    bool open(const char * portname, _u32 baudrate, _u32 flags);
     void _init();
 
-	wchar_t  _portName[20];
+    char _portName[20];
     uint32_t _baudrate;
     uint32_t _flags;
 

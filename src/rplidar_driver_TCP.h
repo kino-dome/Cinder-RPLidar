@@ -33,7 +33,7 @@
  */
 
 #pragma once
-#include "Convert.h"
+
 namespace rp { namespace standalone{ namespace rplidar {
 
 class TCPChannelDevice :public ChannelDevice
@@ -42,9 +42,9 @@ public:
     rp::net::StreamSocket * _binded_socket;
     TCPChannelDevice():_binded_socket(rp::net::StreamSocket::CreateSocket()){}
 
-    bool bind(const wchar_t * ipStr, uint32_t port)
+    bool bind(const char * ipStr, uint32_t port)
     {
-        rp::net::SocketAddress socket(narrow(ipStr).c_str(), port);
+        rp::net::SocketAddress socket(ipStr, port);
         return IS_OK(_binded_socket->connect(socket));
     }
     void close()
@@ -77,7 +77,7 @@ public:
 
     RPlidarDriverTCP();
     virtual ~RPlidarDriverTCP();
-    virtual u_result connect(const wchar_t * ipStr, _u32 port, _u32 flag = 0);
+    virtual u_result connect(const char * ipStr, _u32 port, _u32 flag = 0);
     virtual void disconnect();
 };
 
